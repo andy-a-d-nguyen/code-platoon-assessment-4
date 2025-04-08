@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: twoge-config
+  namespace: twoge
 data:
-  DB_HOST: postgres.default.svc.cluster.local
+  DB_HOST: postgres.twoge.svc.cluster.local
   DB_PORT: '5432'
