@@ -1,0 +1,6 @@
+.trunk/
+.git/
+.gitignore
+.idea/
+.vscode/
+readme.MD
