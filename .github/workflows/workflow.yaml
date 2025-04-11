@@ -43,7 +43,7 @@ jobs:
         id: install
       - name: Write kubeconfig to file
         run: |
-          echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
+          echo "${{ secrets.KUBECONFIG_BASE64 }}" | base64 --decode > kubeconfig.yaml
       - name: Delete existing deployment
         run: |
           ./kubernetes/delete.sh --kubeconfig=kubeconfig.yaml
