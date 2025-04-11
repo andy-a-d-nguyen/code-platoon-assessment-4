@@ -27,6 +27,10 @@ spec:
       labels:
         app: postgres
     spec:
+      volumes:
+        - name: postgres-pvc
+          persistentVolumeClaim:
+            claimName: postgres-pvc
       containers:
         - name: postgres
           image: postgres:alpine

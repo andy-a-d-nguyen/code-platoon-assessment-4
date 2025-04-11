@@ -3,6 +3,7 @@
 if [ -z "$KUBECONFIG" ]; then
     kubectl apply -f kubernetes/twoge.configmap.yaml --kubeconfig $KUBECONFIG
     kubectl apply -f kubernetes/twoge.secret.yaml --kubeconfig $KUBECONFIG
+    kubectl apply -f kubernetes/postgres.pvc.yaml --kubeconfig $KUBECONFIG
     kubectl apply -f kubernetes/postgres.deployment.yaml --kubeconfig $KUBECONFIG
     kubectl apply -f kubernetes/twoge.deployment.yaml --kubeconfig $KUBECONFIG
 else
