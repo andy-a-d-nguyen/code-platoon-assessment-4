@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy
+import os
 from datetime import datetime
 
-import os
 from dotenv import load_dotenv
+from flask import Flask, redirect, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
 load_dotenv()
 
@@ -39,6 +39,11 @@ with app.app_context():
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/hello")
+def hello():
+    return "Hello, World!"
 
 
 @app.route("/posts", methods=["GET", "POST"])
