@@ -44,6 +44,8 @@ jobs:
         uses: azure/k8s-set-context@v4
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }}
+      - name: Update kubeconfig for EKS
+        run: aws eks update-kubeconfig --region us-east-1 --name andy-cluster
       - name: Deploy to EKS
         run: |
           ./kubernetes/delete.sh && ./kubernetes/start.sh
