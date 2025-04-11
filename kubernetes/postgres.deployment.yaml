@@ -28,7 +28,7 @@ spec:
         app: postgres
     spec:
       volumes:
-        - name: postgres-pvc
+        - name: postgres-volume
           persistentVolumeClaim:
             claimName: postgres-pvc
       containers:
@@ -37,9 +37,11 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name: postgres-pvc
+            - name: postgres-volume
               mountPath: /var/lib/postgresql/data
           env:
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
