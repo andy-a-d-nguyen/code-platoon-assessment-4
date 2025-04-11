@@ -4,7 +4,7 @@ metadata:
   name: twoge
   namespace: twoge
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: twoge
   ports:

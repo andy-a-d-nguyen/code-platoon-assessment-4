@@ -32,6 +32,9 @@ spec:
           image: postgres:alpine
           ports:
             - containerPort: 5432
+          volumeMounts:
+            - name: postgres-pvc
+              mountPath: /var/lib/postgresql/data
           env:
             - name: POSTGRES_USER
               valueFrom:
