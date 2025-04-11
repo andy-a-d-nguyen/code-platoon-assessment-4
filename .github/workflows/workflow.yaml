@@ -25,8 +25,8 @@ jobs:
   eks-deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
-    env:
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+    # env:
+    #   KUBECONFIG: ${{ secrets.KUBECONFIG }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -42,8 +42,12 @@ jobs:
           version: 'latest'
         id: install
       - name: Delete existing deployment
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
         run: |
           ./kubernetes/delete.sh
       - name: Deploy to EKS
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
         run: |
           ./kubernetes/start.sh
