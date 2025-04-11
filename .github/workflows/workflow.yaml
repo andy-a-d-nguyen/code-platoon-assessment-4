@@ -25,8 +25,8 @@ jobs:
   eks-deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
-    # env:
-    #   KUBECONFIG: ${{ secrets.KUBECONFIG }}
+    env:
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,18 +36,19 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Install kubectl
-        uses: azure/setup-kubectl@v4
-        with:
-          version: 'latest'
-        id: install
-      - name: Delete existing deployment
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
-        run: |
-          ./kubernetes/delete.sh
+      - name: Configure kubectl
+        uses: actions-hub/kubectl@master
       - name: Deploy to EKS
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
         run: |
-          ./kubernetes/start.sh
+          ./kubernetes/delete.sh && ./kubernetes/start.sh
+      # - name: Install kubectl
+      #   uses: azure/setup-kubectl@v4
+      #   with:
+      #     version: 'latest'
+      #   id: install
+      # - name: Delete existing deployment
+      #   run: |
+      #     ./kubernetes/delete.sh
+      # - name: Deploy to EKS
+      #   run: |
+      #     ./kubernetes/start.sh
