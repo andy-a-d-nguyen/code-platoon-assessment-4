@@ -21,7 +21,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/twoge:1.0
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/twoge:latest
   eks-deploy:
     needs: build-and-push
     runs-on: ubuntu-latest

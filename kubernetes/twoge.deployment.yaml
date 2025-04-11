@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: twoge
-          image: docker4646/twoge:1.0
+          image: docker4646/twoge:latest
           ports:
             - containerPort: 8080
           env:
