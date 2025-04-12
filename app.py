@@ -46,6 +46,11 @@ def hello():
     return "Hello, World!"
 
 
+@app.route("/goodbye")
+def goodbye():
+    return "Goodbye, World!"
+
+
 @app.route("/posts", methods=["GET", "POST"])
 def posts():
 
